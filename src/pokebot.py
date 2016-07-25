@@ -1,8 +1,9 @@
+from slacker import Slacker
 from pgoapi import PGoApi
 from pgoapi.utilities import f2i, h2f
 import yaml
 import os
-import time
+from datetime import datetime, timedelta
 import json
 import random
 from s2sphere import Cell, CellId, LatLng
@@ -25,6 +26,7 @@ def load_pokemon():
 
 CONFIG = load_config()
 POKEMON_DB = load_pokemon()
+BOT_ICON = ""
 
 
 def encode(cellid):
@@ -88,7 +90,7 @@ def format_pokemon(pokemon):
   
 def find_pokemon(client, lat, long):
     step_size = 0.0015
-    step_limit = 100
+    step_limit = 50
     coords = generate_spiral(lat, long, step_size, step_limit)
     pokemons = []
     seen = set()
@@ -116,14 +118,33 @@ def find_pokemon(client, lat, long):
                         pokemons.append(pokemon)
     
     return list(map(format_pokemon, pokemons))
-                    
+
+
+def post_to_slack(pokemons):
+    slack = Slacker(CONFIG['slackToken'])
+    if pokemons:
+        for pokemon in pokemons:
+            message = 'I can be found <https://pokevision.com/#/@' + str(pokemon['lat']) + \
+                ',' + str(pokemon['long']) + \
+                '|' + 'here' + \
+                ' m>' + ' until ' + (datetime.now() + timedelta(0, pokemon['time_till_hidden'])).strftime("%I:%M:%S:%p")
+            message = "".format(pokemon['name'])
+            slack.chat.post_message('@alan.goldman', message, username=pokemon['name'], icon_url=pokemon['icon'])
+    else:
+        message = 'Could not find any pokemon nearby. Servers may be down?'
+        slack.chat.post_message('@alan.goldman', message, username='pokebot', icon_url=BOT_ICON)
+
+   
+    
 if __name__ == '__main__':
     client = PGoApi()
-    
-    logged_in = client.login(CONFIG['auth_service'], CONFIG['username'], CONFIG['password'])
-    if not logged_in:
-        print("Could not login")
-        exit()
 
-    pokemon = find_pokemon(client, CONFIG['lat'], CONFIG['long'])
-    print(pokemon)
+    logged_in = client.login(CONFIG['auth_service'], CONFIG['username'], CONFIG['password'])
+    pokemons = None
+    if logged_in:
+        pokemons = find_pokemon(client, CONFIG['lat'], CONFIG['long'])
+        print(pokemons)
+    
+    post_to_slack(pokemons)
+    
+    
