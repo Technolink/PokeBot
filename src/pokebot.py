@@ -90,7 +90,7 @@ def format_pokemon(pokemon):
   
 def find_pokemon(client, lat, long):
     step_size = 0.0015
-    step_limit = 50
+    step_limit = 25
     coords = generate_spiral(lat, long, step_size, step_limit)
     pokemons = []
     seen = set()
@@ -127,15 +127,13 @@ def post_to_slack(pokemons):
             message = 'I can be found <https://pokevision.com/#/@' + str(pokemon['lat']) + \
                 ',' + str(pokemon['long']) + \
                 '|' + 'here' + \
-                ' m>' + ' until ' + (datetime.now() + timedelta(0, pokemon['time_till_hidden'])).strftime("%I:%M:%S:%p")
-            message = "".format(pokemon['name'])
-            slack.chat.post_message('@alan.goldman', message, username=pokemon['name'], icon_url=pokemon['icon'])
+                '> until ' + (datetime.now() + timedelta(0, pokemon['time_till_hidden'])).strftime("%-I:%M:%S %p")
+            slack.chat.post_message('@alan.goldman', message, username=pokemon['name'], icon_emoji=":pokemon-{}:".format(pokemon['name']))
     else:
         message = 'Could not find any pokemon nearby. Servers may be down?'
         slack.chat.post_message('@alan.goldman', message, username='pokebot', icon_url=BOT_ICON)
 
-   
-    
+
 if __name__ == '__main__':
     client = PGoApi()
 
