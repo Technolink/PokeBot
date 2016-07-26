@@ -293,7 +293,7 @@ pokemon:
     rarity: 3
   - name: Krabby
     src: http://i.imgur.com/jY95paa.png
-    rarity: 3
+    rarity: 2
   - name: Kingler
     src: http://i.imgur.com/sd2Txy7.png
     rarity: 3

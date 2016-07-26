@@ -39,12 +39,15 @@ class Pokemon(object):
         return cls(pokemon_data['pokemon_data']['pokemon_id'],
                       pokemon_data['latitude'],
                       pokemon_data['longitude'],
+                      pokemon_data['encounter_id'],
                       pokemon_data['time_till_hidden_ms'])
-    def __init__(self, id, lat, long, time_till_hidden_ms):
+
+    def __init__(self, id, lat, long, encounter_id, time_till_hidden_ms):
         self.id = id
         self.name = POKEMON_DB['pokemon'][self.id-1]['name']
         self.icon = POKEMON_DB['pokemon'][self.id-1]['src']
         self.rarity = POKEMON_DB['pokemon'][self.id-1]['rarity']
+        self.encounter_id = encounter_id
         self.lat = lat
         self.long = long
         self.time_till_hidden = time_till_hidden_ms/1000
@@ -54,13 +57,23 @@ class Pokemon(object):
         return self.id < other.id
     
     def __eq__(self, other):
-        return self.id == other.id and self.lat == other.lat and self.long == other.long
+        return self.encounter_id == other.encounter_id
         
     def __hash__(self):
-        return hash("{}-{}-{}".format(self.id, self.lat, self.long))
+        return self.encounter_id
     
     def __repr__(self):
-        return "id: {}, name: {}, lat: {}, long: {}, time_till_hidden: {}".format(self.id, self.name, self.lat, self.long, self.time_till_hidden)
+        return "[id: {}, name: {}, lat: {}, long: {}, encounter_id: {}]".format(self.id, self.name, self.lat, self.long, self.encounter_id)
+        
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'lat': self.lat,
+            'long': self.long,
+            'name': self.name,
+            'encounter_id': self.encounter_id,
+            'time_till_hidden': self.time_till_hidden
+        }
 
     
 def encode(cellid):
@@ -97,7 +110,7 @@ def generate_location_steps(starting_lat, startin_lng, step_size, step_limit):
 
 def find_pokemon(client, starting_lat, starting_long):
     step_size = 0.0015
-    step_limit = 1
+    step_limit = 2
     #coords = generate_spiral(lat, long, step_size, step_limit)
     coords = generate_location_steps(starting_lat, starting_long, step_size, step_limit)
     pokemons = []
@@ -125,24 +138,23 @@ def find_pokemon(client, starting_lat, starting_long):
                         pokemons.append(Pokemon.from_data(pokemon))
     
     return pokemons
- 
+
     
-def filter_pokemon(pokemons):
-    slack = Slacker(CONFIG['slackToken'])
-    messages = slack.channels.history(CONFIG['slackChannel']).body['messages']
-    pokemons_history = set()
-    for message in messages:
-        if message['subtype'] == 'bot_message':
-            try:
-                name = message['icons']['emoji'].split('-')[1].strip(':')
-                id = POKEMON_NAME_TO_ID[name]
-                text = message['text']
-                lat = float(text.split(',')[0].split('@')[-1])
-                long = float(text.split(',')[1].split('|')[0])
-                pokemons_history.add(Pokemon(id, lat, long, 0))
-            except KeyError:
-                pass
-    return [pokemon for pokemon in pokemons if pokemon not in pokemons_history]
+def save_and_filter_pokemon(pokemons):
+    file = path+"/../pokemon_db.json"
+    existing = {}
+    if os.path.isfile(file):
+        with open(file) as data:
+            existing = json.load(data)
+
+    filtered_pokemons = [pokemon for pokemon in pokemons if str(pokemon.encounter_id) not in existing]
+    for pokemon in filtered_pokemons:
+        existing[pokemon.encounter_id] = pokemon.to_dict()
+    
+    with open(file, 'w') as data:
+        json.dump(existing, data)
+    
+    return filtered_pokemons
 
 
 def post_to_slack(pokemons):
@@ -167,7 +179,7 @@ if __name__ == '__main__':
         pokemons = find_pokemon(client, CONFIG['lat'], CONFIG['long'])
         pokemons.sort()
         print(pokemons)
-
-    post_to_slack(filter_pokemon(pokemons))
+    
+    post_to_slack(save_and_filter_pokemon(pokemons))
     
     
