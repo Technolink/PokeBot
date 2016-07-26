@@ -2,303 +2,454 @@ title: pokemon
 pokemon:
   - name: Bulbasaur
     src: http://i.imgur.com/J9ynKU9.png
+    rarity: 10
   - name: Ivysaur
     src: http://i.imgur.com/2BmEJY1.png
+    rarity: 10
   - name: Venusaur
     src: http://i.imgur.com/HyvH3iG.png
+    rarity: 10
   - name: Charmander
     src: http://i.imgur.com/jee6nD3.png
+    rarity: 10
   - name: Charmeleon
     src: http://i.imgur.com/Gi9bvn1.png
+    rarity: 10
   - name: Charizard
     src: http://i.imgur.com/xCuEJI7.png
+    rarity: 10
   - name: Squirtle
     src: http://i.imgur.com/dRY9tTv.png
+    rarity: 10
   - name: Wartortle
     src: http://i.imgur.com/GGg5FQu.png
+    rarity: 10
   - name: Blastoise
     src: http://i.imgur.com/YY1opfi.png
+    rarity: 10
   - name: Caterpie
     src: http://i.imgur.com/vB8l2jS.png
+    rarity: 1
   - name: Metapod
     src: http://i.imgur.com/FMa6yXY.png
+    rarity: 1
   - name: Butterfree
     src: http://i.imgur.com/hQAWSog.png
+    rarity: 1
   - name: Weedle
     src: http://i.imgur.com/t3J27X2.png
+    rarity: 1
   - name: Kakuna
     src: http://i.imgur.com/2OxfMtn.png
+    rarity: 1
   - name: Beedrill
     src: http://i.imgur.com/C3c8vzg.png
+    rarity: 1
   - name: Pidgey
     src: http://i.imgur.com/4VTVTkk.png
+    rarity: 1
   - name: Pidgeotto
     src: http://i.imgur.com/DpzZ91Q.png
+    rarity: 1
   - name: Pidgeot
     src: http://i.imgur.com/Mc1WObi.png
+    rarity: 1
   - name: Rattata
     src: http://i.imgur.com/bTejs34.png
+    rarity: 1
   - name: Raticate
     src: http://i.imgur.com/UeL4Aag.png
+    rarity: 1
   - name: Spearow
     src: http://i.imgur.com/TeuYzrs.png
+    rarity: 3
   - name: Fearow
     src: http://i.imgur.com/LObFh67.png
+    rarity: 3
   - name: Ekans
     src: http://i.imgur.com/r87rWZ6.png
+    rarity: 4
   - name: Arbok
     src: http://i.imgur.com/sbshBkp.png
+    rarity: 4
   - name: Pikachu
     src: http://i.imgur.com/d8zj42u.png
+    rarity: 10
   - name: Raichu
     src: http://i.imgur.com/cX0wvid.png
+    rarity: 10
   - name: Sandshrew
     src: http://i.imgur.com/SLCRvLk.png
+    rarity: 6
   - name: Sandslash
     src: http://i.imgur.com/YW2SBbP.png
+    rarity: 6
   - name: Nidoranf
     src: http://i.imgur.com/fyzYO8j.png
+    rarity: 4
   - name: Nidorina
     src: http://i.imgur.com/MRtZMlI.png
+    rarity: 4
   - name: Nidoqueen
     src: http://i.imgur.com/fgKWPJf.png
+    rarity: 4
   - name: Nidoranm
     src: http://i.imgur.com/GRMydJg.png
+    rarity: 4
   - name: Nidorino
     src: http://i.imgur.com/XtN73fs.png
+    rarity: 4
   - name: Nidoking
     src: http://i.imgur.com/Ov2IDRZ.png
+    rarity: 4
   - name: Clefairy
     src: http://i.imgur.com/z8n0knm.png
+    rarity: 4
   - name: Clefable
     src: http://i.imgur.com/zWGtXjb.png
+    rarity: 4
   - name: Vulpix
     src: http://i.imgur.com/ArDTU7v.png
+    rarity: 6
   - name: Ninetales
     src: http://i.imgur.com/ZOBFyZo.png
+    rarity: 6
   - name: Jigglypuff
     src: http://i.imgur.com/ipf4Mp3.png
+    rarity: 5
   - name: Wigglytuff
     src: http://i.imgur.com/ZmdlC1T.png
+    rarity: 5
   - name: Zubat
     src: http://i.imgur.com/w8oCg2P.png
+    rarity: 2
   - name: Golbat
     src: http://i.imgur.com/muZnJwl.png
+    rarity: 2
   - name: Oddish
     src: http://i.imgur.com/ng75ubV.png
+    rarity: 2
   - name: Gloom
     src: http://i.imgur.com/Krw7NhL.png
+    rarity: 2
   - name: Vileplume
     src: http://i.imgur.com/QipChtU.png
+    rarity: 2
   - name: Paras
     src: http://i.imgur.com/JWYUQ2D.png
+    rarity: 3
   - name: Parasect
     src: http://i.imgur.com/TTm83oB.png
+    rarity: 3
   - name: Venonat
     src: http://i.imgur.com/rK55R0R.png
+    rarity: 2
   - name: Venomoth
     src: http://i.imgur.com/cr7Hrtz.png
+    rarity: 2
   - name: Diglett
     src: http://i.imgur.com/4rgKdgx.png
+    rarity: 4
   - name: Dugtrio
     src: http://i.imgur.com/DgUAgCb.png
+    rarity: 4
   - name: Meowth
     src: http://i.imgur.com/VBO9q67.png
+    rarity: 3
   - name: Persian
     src: http://i.imgur.com/Ebeufiu.png
+    rarity: 3
   - name: Psyduck
     src: http://i.imgur.com/vZ9t8bU.png
+    rarity: 5
   - name: Golduck
     src: http://i.imgur.com/6elJIqf.png
+    rarity: 5
   - name: Mankey
     src: http://i.imgur.com/ZADfOPO.png
+    rarity: 5
   - name: Primeape
     src: http://i.imgur.com/zbCGbRT.png
+    rarity: 5
   - name: Growlithe
     src: http://i.imgur.com/1tHmP4M.png
+    rarity: 5
   - name: Arcanine
     src: http://i.imgur.com/rfk9PVT.png
+    rarity: 5
   - name: Poliwag
     src: http://i.imgur.com/iWgkh6Z.png
+    rarity: 4
   - name: Poliwhirl
     src: http://i.imgur.com/LstLmxR.png
+    rarity: 4
   - name: Poliwrath
     src: http://i.imgur.com/wCBEXvZ.png
+    rarity: 4
   - name: Abra
     src: http://i.imgur.com/m6SEUIc.png
+    rarity: 7
   - name: Kadabra
     src: http://i.imgur.com/MImxjGE.png
+    rarity: 7
   - name: Alakazam
     src: http://i.imgur.com/39ffQOc.png
+    rarity: 7
   - name: Machop
     src: http://i.imgur.com/RTrQqOh.png
+    rarity: 7
   - name: Machoke
     src: http://i.imgur.com/BxYqaV7.png
+    rarity: 7
   - name: Machamp
     src: http://i.imgur.com/M4EhGUa.png
+    rarity: 7
   - name: Bellsprout
     src: http://i.imgur.com/z9GIhur.png
+    rarity: 3
   - name: Weepinbell
     src: http://i.imgur.com/YV6kNAz.png
+    rarity: 3
   - name: Victreebel
     src: http://i.imgur.com/iBs61Rw.png
+    rarity: 3
   - name: Tentacool
     src: http://i.imgur.com/0mCuhFr.png
+    rarity: 6
   - name: Tentacruel
     src: http://i.imgur.com/b6Gazzn.png
+    rarity: 6
   - name: Geodude
     src: http://i.imgur.com/7stN60U.png
+    rarity: 5
   - name: Graveler
     src: http://i.imgur.com/ey0UYBh.png
+    rarity: 5
   - name: Golem
     src: http://i.imgur.com/WvICAUZ.png
+    rarity: 5
   - name: Ponyta
     src: http://i.imgur.com/QOAowzP.png
+    rarity: 6
   - name: Rapidash
     src: http://i.imgur.com/vsFF9vy.png
+    rarity: 6
   - name: Slowpoke
     src: http://i.imgur.com/JHOjICn.png
+    rarity: 5
   - name: Slowbro
     src: http://i.imgur.com/iAtAgi4.png
+    rarity: 5
   - name: Magnemite
     src: http://i.imgur.com/9838phS.png
+    rarity: 8
   - name: Magneton
     src: http://i.imgur.com/3bLL11M.png
+    rarity: 8
   - name: Farfetch
     src: http://i.imgur.com/nA5z9vf.png
+    rarity: 5
   - name: Doduo
     src: http://i.imgur.com/kah8lVf.png
+    rarity: 3
   - name: Dodrio
     src: http://i.imgur.com/pplDPof.png
+    rarity: 3
   - name: Seel
     src: http://i.imgur.com/n2mUSQM.png
+    rarity: 6
   - name: Dewgong
     src: http://i.imgur.com/e2sVFJ9.png
+    rarity: 6
   - name: Grimer
     src: http://i.imgur.com/JqBcHP3.png
+    rarity: 7
   - name: Muk
     src: http://i.imgur.com/3tDlRaF.png
+    rarity: 7
   - name: Shellder
     src: http://i.imgur.com/ijYCl5X.png
+    rarity: 4
   - name: Cloyster
     src: http://i.imgur.com/BVPJ9mT.png
+    rarity: 4
   - name: Gastly
     src: http://i.imgur.com/WyqrW1i.png
+    rarity: 5
   - name: Haunter
     src: http://i.imgur.com/QTsY4Pj.png
+    rarity: 5
   - name: Gengar
     src: http://i.imgur.com/sRpm6ko.png
+    rarity: 5
   - name: Onix
     src: http://i.imgur.com/0VorWp9.png
+    rarity: 5
   - name: Drowzee
     src: http://i.imgur.com/0r60JJM.png
+    rarity: 1
   - name: Hypno
     src: http://i.imgur.com/SkFsbbm.png
+    rarity: 1
   - name: Krabby
     src: http://i.imgur.com/jY95paa.png
+    rarity: 3
   - name: Kingler
     src: http://i.imgur.com/sd2Txy7.png
+    rarity: 3
   - name: Voltorb
     src: http://i.imgur.com/HcFELhG.png
+    rarity: 7
   - name: Electrode
     src: http://i.imgur.com/TZZ4Oyg.png
+    rarity: 7
   - name: Exeggcute
     src: http://i.imgur.com/iR6uH27.png
+    rarity: 5
   - name: Exeggutor
     src: http://i.imgur.com/vdaiuyl.png
+    rarity: 5
   - name: Cubone
     src: http://i.imgur.com/5ahcjNN.png
+    rarity: 4
   - name: Marowak
     src: http://i.imgur.com/UdDCob5.png
+    rarity: 4
   - name: Hitmonlee
     src: http://i.imgur.com/neZvjyS.png
+    rarity: 8
   - name: Hitmonchan
     src: http://i.imgur.com/JWcdbk5.png
+    rarity: 8
   - name: Lickitung
     src: http://i.imgur.com/aZOT7Aq.png
+    rarity: 7
   - name: Koffing
     src: http://i.imgur.com/27Oq8tF.png
+    rarity: 6
   - name: Weezing
     src: http://i.imgur.com/AM4T75L.png
+    rarity: 6
   - name: Rhyhorn
     src: http://i.imgur.com/kvmV7Rv.png
+    rarity: 7
   - name: Rhydon
     src: http://i.imgur.com/3oXMPAn.png
+    rarity: 7
   - name: Chansey
     src: http://i.imgur.com/dqfduAJ.png
+    rarity: 8
   - name: Tangela
     src: http://i.imgur.com/YifjSAL.png
+    rarity: 6
   - name: Kangaskhan
     src: http://i.imgur.com/cXO0pEr.png
+    rarity: 10
   - name: Horsea
     src: http://i.imgur.com/KPORG91.png
+    rarity: 6
   - name: Seadra
     src: http://i.imgur.com/uMbL1Sd.png
+    rarity: 6
   - name: Goldeen
     src: http://i.imgur.com/WTsVZD0.png
+    rarity: 4
   - name: Seaking
     src: http://i.imgur.com/QPXKxb6.png
+    rarity: 4
   - name: Staryu
     src: http://i.imgur.com/pAMBC7h.png
+    rarity: 6
   - name: Starmie
     src: http://i.imgur.com/IrE5Z0j.png
+    rarity: 6
   - name: Mrmime
     src: http://i.imgur.com/cQNEwsX.png
+    rarity: 5
   - name: Scyther
     src: http://i.imgur.com/rRHori0.png
+    rarity: 7
   - name: Jynx
     src: http://i.imgur.com/eMJ7fC5.png
+    rarity: 5
   - name: Electabuzz
     src: http://i.imgur.com/TFt4SNV.png
+    rarity: 8
   - name: Magmar
     src: http://i.imgur.com/RjFcLOz.png
+    rarity: 6
   - name: Pinsir
     src: http://i.imgur.com/Df1mbmR.png
+    rarity: 7
   - name: Tauros
     src: http://i.imgur.com/3W1Cjba.png
+    rarity: 7
   - name: Magikarp
     src: http://i.imgur.com/jzmho2Y.png
+    rarity: 2
   - name: Gyarados
     src: http://i.imgur.com/Evtm1DG.png
+    rarity: 7
   - name: Lapras
     src: http://i.imgur.com/0YWCWiC.png
+    rarity: 9
   - name: Ditto
     src: http://i.imgur.com/Wv5qoAv.png
+    rarity: 10
   - name: Eevee
     src: http://i.imgur.com/ci7ZrUx.png
+    rarity: 2
   - name: Vaporeon
     src: http://i.imgur.com/9PFAu2e.png
+    rarity: 2
   - name: Jolteon
     src: http://i.imgur.com/my4fdKU.png
+    rarity: 2
   - name: Flareon
     src: http://i.imgur.com/9IoE33v.png
+    rarity: 2
   - name: Porygon
     src: http://i.imgur.com/gV34Aeb.png
+    rarity: 9
   - name: Omanyte
     src: http://i.imgur.com/kX5obKw.png
+    rarity: 10
   - name: Omastar
     src: http://i.imgur.com/Dbu29qN.png
+    rarity: 10
   - name: Kabuto
     src: http://i.imgur.com/OY7ujoJ.png
+    rarity: 10
   - name: Kabutops
     src: http://i.imgur.com/QlGO2ik.png
+    rarity: 10
   - name: Aerodactyl
     src: http://i.imgur.com/GHn4OfJ.png
+    rarity: 10
   - name: Snorlax
     src: http://i.imgur.com/4mVf4qo.png
+    rarity: 9
   - name: Articuno
     src: http://i.imgur.com/vGhFLIE.png
+    rarity: 11
   - name: Zapdos
     src: http://i.imgur.com/YRoGMhw.png
+    rarity: 11
   - name: Moltres
     src: http://i.imgur.com/xF2Iq2z.png
+    rarity: 11
   - name: Dratini
     src: http://i.imgur.com/u4kuUX6.png
+    rarity: 8
   - name: Dragonair
     src: http://i.imgur.com/wnO5kMH.png
+    rarity: 8
   - name: Dragonite
     src: http://i.imgur.com/tRAf2ht.png
+    rarity: 8
   - name: Mewtwo
     src: http://i.imgur.com/EbSLVKQ.png
+    rarity: 11
   - name: Mew
     src: http://i.imgur.com/5n3F79K.png
+    rarity: 11

@@ -33,6 +33,7 @@ class Pokemon(object):
         self.id = pokemon_data['pokemon_data']['pokemon_id']
         self.name = POKEMON_DB['pokemon'][self.id-1]['name']
         self.icon = POKEMON_DB['pokemon'][self.id-1]['src']
+        self.rarity = POKEMON_DB['pokemon'][self.id-1]['rarity']
         self.lat = pokemon_data['latitude']
         self.long = pokemon_data['longitude']
         self.time_till_hidden = pokemon_data['time_till_hidden_ms']/1000
@@ -79,34 +80,6 @@ def generate_location_steps(starting_lat, startin_lng, step_size, step_limit):
         x, y = x + dx, y + dy
 
 
-def generate_spiral(starting_lat, starting_lng, step_size, step_limit):
-    coords = [{'lat': starting_lat, 'lng': starting_lng}]
-    steps,x,y,d,m = 1, 0, 0, 1, 1
-    rlow = 0.0
-    rhigh = 0.0005
-
-    while steps < step_limit:
-        while 2 * x * d < m and steps < step_limit:
-            x = x + d
-            steps += 1
-            lat = x * step_size + starting_lat + random.uniform(rlow, rhigh)
-            lng = y * step_size + starting_lng + random.uniform(rlow, rhigh)
-            coords.append({'lat': lat, 'lng': lng})
-        while 2 * y * d < m and steps < step_limit:
-            y = y + d
-            steps += 1
-            lat = x * step_size + starting_lat + random.uniform(rlow, rhigh)
-            lng = y * step_size + starting_lng + random.uniform(rlow, rhigh)
-            coords.append({'lat': lat, 'lng': lng})
-
-        d = -1 * d
-        m = m + 1
-    return coords
-
-    
-def format_pokemon(pokemon):
-    return Pokemon(pokemon)
-  
 def find_pokemon(client, starting_lat, starting_long):
     step_size = 0.0015
     step_limit = 1
@@ -134,9 +107,9 @@ def find_pokemon(client, starting_lat, starting_long):
                             continue
                         else:
                             seen.add(encounter_id)
-                        pokemons.append(pokemon)
+                        pokemons.append(Pokemon(pokemon))
     
-    return list(map(format_pokemon, pokemons))
+    return pokemons
 
 
 def post_to_slack(pokemons):
@@ -146,6 +119,10 @@ def post_to_slack(pokemons):
             ',' + str(pokemon.long) + \
             '|' + 'here' + \
             '> until ' + (datetime.now() + timedelta(0, pokemon.time_till_hidden)).strftime("%-I:%M:%S %p")
+        if (pokemon.rarity >= CONFIG['channel_rarity']):
+            message = '<!channel> ' + message
+        elif (pokemon.rarity >= CONFIG['here_rarity']):
+            message = '<!here> ' + message
         slack.chat.post_message('@alan.goldman', message, username=pokemon.name, icon_emoji=":pokemon-{}:".format(pokemon.name))
 
 
