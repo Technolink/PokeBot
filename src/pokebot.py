@@ -97,7 +97,7 @@ def generate_location_steps(starting_lat, startin_lng, step_size, step_limit):
 
 def find_pokemon(client, starting_lat, starting_long):
     step_size = 0.0015
-    step_limit = 3
+    step_limit = 1
     #coords = generate_spiral(lat, long, step_size, step_limit)
     coords = generate_location_steps(starting_lat, starting_long, step_size, step_limit)
     pokemons = []
