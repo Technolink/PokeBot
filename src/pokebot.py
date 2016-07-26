@@ -142,7 +142,6 @@ def filter_pokemon(pokemons):
                 pokemons_history.add(Pokemon(id, lat, long, 0))
             except KeyError:
                 pass
-    print(pokemons_history)
     return [pokemon for pokemon in pokemons if pokemon not in pokemons_history]
 
 
