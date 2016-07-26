@@ -3,6 +3,7 @@ from pgoapi import PGoApi
 from pgoapi.utilities import f2i, h2f
 import yaml
 import os
+import re
 from datetime import datetime, timedelta
 import json
 import random
@@ -26,23 +27,37 @@ def load_pokemon():
 
 CONFIG = load_config()
 POKEMON_DB = load_pokemon()
-BOT_ICON = ""
+POKEMON_NAME_TO_ID = {}
 
+for i in range(1,len(POKEMON_DB['pokemon'])):
+    POKEMON_NAME_TO_ID[POKEMON_DB['pokemon'][i-1]['name']] = i
+
+   
 class Pokemon(object):
-    def __init__(self, pokemon_data):
-        self.id = pokemon_data['pokemon_data']['pokemon_id']
+    @classmethod
+    def from_data(cls, pokemon_data):
+        return cls(pokemon_data['pokemon_data']['pokemon_id'],
+                      pokemon_data['latitude'],
+                      pokemon_data['longitude'],
+                      pokemon_data['time_till_hidden_ms'])
+    def __init__(self, id, lat, long, time_till_hidden_ms):
+        self.id = id
         self.name = POKEMON_DB['pokemon'][self.id-1]['name']
         self.icon = POKEMON_DB['pokemon'][self.id-1]['src']
         self.rarity = POKEMON_DB['pokemon'][self.id-1]['rarity']
-        self.lat = pokemon_data['latitude']
-        self.long = pokemon_data['longitude']
-        self.time_till_hidden = pokemon_data['time_till_hidden_ms']/1000
+        self.lat = lat
+        self.long = long
+        self.time_till_hidden = time_till_hidden_ms/1000
+        self.datetime_hidden = (datetime.now() + timedelta(0, self.time_till_hidden)).strftime("%-I:%M:%S %p")
 
     def __lt__(self, other):
         return self.id < other.id
     
     def __eq__(self, other):
-        return self.id < other.id
+        return self.id == other.id and self.lat == other.lat and self.long == other.long
+        
+    def __hash__(self):
+        return hash("{}-{}-{}".format(self.id, self.lat, self.long))
     
     def __repr__(self):
         return "id: {}, name: {}, lat: {}, long: {}, time_till_hidden: {}".format(self.id, self.name, self.lat, self.long, self.time_till_hidden)
@@ -82,7 +97,7 @@ def generate_location_steps(starting_lat, startin_lng, step_size, step_limit):
 
 def find_pokemon(client, starting_lat, starting_long):
     step_size = 0.0015
-    step_limit = 1
+    step_limit = 3
     #coords = generate_spiral(lat, long, step_size, step_limit)
     coords = generate_location_steps(starting_lat, starting_long, step_size, step_limit)
     pokemons = []
@@ -107,9 +122,28 @@ def find_pokemon(client, starting_lat, starting_long):
                             continue
                         else:
                             seen.add(encounter_id)
-                        pokemons.append(Pokemon(pokemon))
+                        pokemons.append(Pokemon.from_data(pokemon))
     
     return pokemons
+ 
+    
+def filter_pokemon(pokemons):
+    slack = Slacker(CONFIG['slackToken'])
+    messages = slack.channels.history(CONFIG['slackChannel']).body['messages']
+    pokemons_history = set()
+    for message in messages:
+        if message['subtype'] == 'bot_message':
+            try:
+                name = message['icons']['emoji'].split('-')[1].strip(':')
+                id = POKEMON_NAME_TO_ID[name]
+                text = message['text']
+                lat = float(text.split(',')[0].split('@')[-1])
+                long = float(text.split(',')[1].split('|')[0])
+                pokemons_history.add(Pokemon(id, lat, long, 0))
+            except KeyError:
+                pass
+    print(pokemons_history)
+    return [pokemon for pokemon in pokemons if pokemon not in pokemons_history]
 
 
 def post_to_slack(pokemons):
@@ -118,12 +152,12 @@ def post_to_slack(pokemons):
         message = 'You can find me <https://pokevision.com/#/@' + str(pokemon.lat) + \
             ',' + str(pokemon.long) + \
             '|' + 'here' + \
-            '> until ' + (datetime.now() + timedelta(0, pokemon.time_till_hidden)).strftime("%-I:%M:%S %p")
+            '> until ' + pokemon.datetime_hidden
         if (pokemon.rarity >= CONFIG['channel_rarity']):
             message = '<!channel> ' + message
         elif (pokemon.rarity >= CONFIG['here_rarity']):
             message = '<!here> ' + message
-        slack.chat.post_message('@alan.goldman', message, username=pokemon.name, icon_emoji=":pokemon-{}:".format(pokemon.name))
+        slack.chat.post_message(CONFIG['slackChannel'], message, username=pokemon.name, icon_emoji=":pokemon-{}:".format(pokemon.name))
 
 
 if __name__ == '__main__':
@@ -135,6 +169,6 @@ if __name__ == '__main__':
         pokemons.sort()
         print(pokemons)
 
-    post_to_slack(pokemons)
+    post_to_slack(filter_pokemon(pokemons))
     
     
