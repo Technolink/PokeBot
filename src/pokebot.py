@@ -28,7 +28,25 @@ CONFIG = load_config()
 POKEMON_DB = load_pokemon()
 BOT_ICON = ""
 
+class Pokemon(object):
+    def __init__(self, pokemon_data):
+        self.id = pokemon_data['pokemon_data']['pokemon_id']
+        self.name = POKEMON_DB['pokemon'][self.id-1]['name']
+        self.icon = POKEMON_DB['pokemon'][self.id-1]['src']
+        self.lat = pokemon_data['latitude']
+        self.long = pokemon_data['longitude']
+        self.time_till_hidden = pokemon_data['time_till_hidden_ms']/1000
 
+    def __lt__(self, other):
+        return self.id < other.id
+    
+    def __eq__(self, other):
+        return self.id < other.id
+    
+    def __repr__(self):
+        return "id: {}, name: {}, lat: {}, long: {}, time_till_hidden: {}".format(self.id, self.name, self.lat, self.long, self.time_till_hidden)
+
+    
 def encode(cellid):
     output = []
     encoder._VarintEncoder()(output.append, cellid)
@@ -50,7 +68,16 @@ def get_cell_ids(lat, long, radius = 10):
 
     # Return everything
     return sorted(walk)
-  
+
+    
+def generate_location_steps(starting_lat, startin_lng, step_size, step_limit):
+    pos, x, y, dx, dy = 1, 0, 0, 0, -1
+    while -step_limit / 2 < x <= step_limit / 2 and -step_limit / 2 < y <= step_limit / 2:
+        yield {'lat': x * step_size + starting_lat, 'lng': y * step_size + startin_lng}
+        if x == y or (x < 0 and x == -y) or (x > 0 and x == 1 - y):
+            dx, dy = -dy, dx
+        x, y = x + dx, y + dy
+
 
 def generate_spiral(starting_lat, starting_lng, step_size, step_limit):
     coords = [{'lat': starting_lat, 'lng': starting_lng}]
@@ -78,26 +105,19 @@ def generate_spiral(starting_lat, starting_lng, step_size, step_limit):
 
     
 def format_pokemon(pokemon):
-    id = pokemon['pokemon_data']['pokemon_id']
-    return {
-        'id': id,
-        'name': POKEMON_DB['pokemon'][id-1]['name'],
-        'icon': POKEMON_DB['pokemon'][id-1]['src'],
-        'lat': pokemon['latitude'],
-        'long': pokemon['longitude'],
-        'time_till_hidden': pokemon['time_till_hidden_ms']/1000
-    }
+    return Pokemon(pokemon)
   
-def find_pokemon(client, lat, long):
+def find_pokemon(client, starting_lat, starting_long):
     step_size = 0.0015
-    step_limit = 25
-    coords = generate_spiral(lat, long, step_size, step_limit)
+    step_limit = 1
+    #coords = generate_spiral(lat, long, step_size, step_limit)
+    coords = generate_location_steps(starting_lat, starting_long, step_size, step_limit)
     pokemons = []
     seen = set()
 
     for coord in coords:
         lat = coord['lat']
-        lpng = coord['lng']
+        long = coord['lng']
         client.set_position(lat, long, 0)
         
         cell_ids = get_cell_ids(lat, long)
@@ -114,7 +134,6 @@ def find_pokemon(client, lat, long):
                             continue
                         else:
                             seen.add(encounter_id)
-                        print(pokemon)
                         pokemons.append(pokemon)
     
     return list(map(format_pokemon, pokemons))
@@ -122,27 +141,23 @@ def find_pokemon(client, lat, long):
 
 def post_to_slack(pokemons):
     slack = Slacker(CONFIG['slackToken'])
-    if pokemons:
-        for pokemon in pokemons:
-            message = 'I can be found <https://pokevision.com/#/@' + str(pokemon['lat']) + \
-                ',' + str(pokemon['long']) + \
-                '|' + 'here' + \
-                '> until ' + (datetime.now() + timedelta(0, pokemon['time_till_hidden'])).strftime("%-I:%M:%S %p")
-            slack.chat.post_message('@alan.goldman', message, username=pokemon['name'], icon_emoji=":pokemon-{}:".format(pokemon['name']))
-    else:
-        message = 'Could not find any pokemon nearby. Servers may be down?'
-        slack.chat.post_message('@alan.goldman', message, username='pokebot', icon_url=BOT_ICON)
+    for pokemon in pokemons:
+        message = 'You can find me <https://pokevision.com/#/@' + str(pokemon.lat) + \
+            ',' + str(pokemon.long) + \
+            '|' + 'here' + \
+            '> until ' + (datetime.now() + timedelta(0, pokemon.time_till_hidden)).strftime("%-I:%M:%S %p")
+        slack.chat.post_message('@alan.goldman', message, username=pokemon.name, icon_emoji=":pokemon-{}:".format(pokemon.name))
 
 
 if __name__ == '__main__':
     client = PGoApi()
-
     logged_in = client.login(CONFIG['auth_service'], CONFIG['username'], CONFIG['password'])
-    pokemons = None
+    pokemons = []
     if logged_in:
         pokemons = find_pokemon(client, CONFIG['lat'], CONFIG['long'])
+        pokemons.sort()
         print(pokemons)
-    
+
     post_to_slack(pokemons)
     
     
