@@ -35,7 +35,7 @@ pokemon:
     rarity: 1
   - name: Butterfree
     src: http://i.imgur.com/hQAWSog.png
-    rarity: 1
+    rarity: 3
   - name: Weedle
     src: http://i.imgur.com/t3J27X2.png
     rarity: 1
@@ -44,7 +44,7 @@ pokemon:
     rarity: 1
   - name: Beedrill
     src: http://i.imgur.com/C3c8vzg.png
-    rarity: 1
+    rarity: 3
   - name: Pidgey
     src: http://i.imgur.com/4VTVTkk.png
     rarity: 1
@@ -53,7 +53,7 @@ pokemon:
     rarity: 1
   - name: Pidgeot
     src: http://i.imgur.com/Mc1WObi.png
-    rarity: 1
+    rarity: 3
   - name: Rattata
     src: http://i.imgur.com/bTejs34.png
     rarity: 1
@@ -134,10 +134,10 @@ pokemon:
     rarity: 2
   - name: Vileplume
     src: http://i.imgur.com/QipChtU.png
-    rarity: 2
+    rarity: 3
   - name: Paras
     src: http://i.imgur.com/JWYUQ2D.png
-    rarity: 3
+    rarity: 2
   - name: Parasect
     src: http://i.imgur.com/TTm83oB.png
     rarity: 3
@@ -146,7 +146,7 @@ pokemon:
     rarity: 2
   - name: Venomoth
     src: http://i.imgur.com/cr7Hrtz.png
-    rarity: 2
+    rarity: 3
   - name: Diglett
     src: http://i.imgur.com/4rgKdgx.png
     rarity: 4
@@ -251,7 +251,7 @@ pokemon:
     rarity: 5
   - name: Doduo
     src: http://i.imgur.com/kah8lVf.png
-    rarity: 3
+    rarity: 2
   - name: Dodrio
     src: http://i.imgur.com/pplDPof.png
     rarity: 3
@@ -287,10 +287,10 @@ pokemon:
     rarity: 5
   - name: Drowzee
     src: http://i.imgur.com/0r60JJM.png
-    rarity: 1
+    rarity: 2
   - name: Hypno
     src: http://i.imgur.com/SkFsbbm.png
-    rarity: 1
+    rarity: 3
   - name: Krabby
     src: http://i.imgur.com/jY95paa.png
     rarity: 3
@@ -401,13 +401,13 @@ pokemon:
     rarity: 2
   - name: Vaporeon
     src: http://i.imgur.com/9PFAu2e.png
-    rarity: 2
+    rarity: 4
   - name: Jolteon
     src: http://i.imgur.com/my4fdKU.png
-    rarity: 2
+    rarity: 4
   - name: Flareon
     src: http://i.imgur.com/9IoE33v.png
-    rarity: 2
+    rarity: 4
   - name: Porygon
     src: http://i.imgur.com/gV34Aeb.png
     rarity: 9
