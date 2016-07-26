@@ -1,0 +1,11 @@
+{
+    "auth_service": "ptc" or "google",
+    "username": "...",
+    "password": "...",
+    "lat": 22,
+    "long": -80,
+    "slackToken": "...",
+    "slackChannel": "...",
+    "here_rarity": 1-10,
+    "channel_rarity": 1-10
+}
