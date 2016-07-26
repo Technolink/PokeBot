@@ -9,20 +9,20 @@ import random
 from s2sphere import Cell, CellId, LatLng
 from google.protobuf.internal import encoder
 
+path = os.path.dirname(os.path.realpath(__file__))
+
 
 def load_config():
-    file = "config.json"
-    if os.path.isfile(file):
-        with open(file) as data:
-            return json.load(data)
-    raise Error
+    file = path+"/../config.json"
+    with open(file) as data:
+        return json.load(data)
 
 
 def load_pokemon():
-    file = "src/pokemon.yaml"
-    if os.path.isfile(file):
-        with open(file) as data:
-            return yaml.load(data)
+    file = path+"/pokemon.yaml"
+    with open(file) as data:
+        return yaml.load(data)
+
 
 CONFIG = load_config()
 POKEMON_DB = load_pokemon()
