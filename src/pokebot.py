@@ -160,7 +160,7 @@ def save_and_filter_pokemon(pokemons):
 def post_to_slack(pokemons):
     slack = Slacker(CONFIG['slackToken'])
     for pokemon in pokemons:
-        message = 'You can find me <https://pokevision.com/#/@' + str(pokemon.lat) + \
+        message = 'You can find ' + pokemon.name + ' <https://pokevision.com/#/@' + str(pokemon.lat) + \
             ',' + str(pokemon.long) + \
             '|' + 'here' + \
             '> until ' + pokemon.datetime_hidden

@@ -2,7 +2,7 @@ title: pokemon
 pokemon:
   - name: Bulbasaur
     src: http://i.imgur.com/J9ynKU9.png
-    rarity: 10
+    rarity: 5
   - name: Ivysaur
     src: http://i.imgur.com/2BmEJY1.png
     rarity: 10
@@ -188,7 +188,7 @@ pokemon:
     rarity: 4
   - name: Abra
     src: http://i.imgur.com/m6SEUIc.png
-    rarity: 7
+    rarity: 6
   - name: Kadabra
     src: http://i.imgur.com/MImxjGE.png
     rarity: 7
@@ -206,7 +206,7 @@ pokemon:
     rarity: 7
   - name: Bellsprout
     src: http://i.imgur.com/z9GIhur.png
-    rarity: 3
+    rarity: 2
   - name: Weepinbell
     src: http://i.imgur.com/YV6kNAz.png
     rarity: 3
@@ -305,7 +305,7 @@ pokemon:
     rarity: 7
   - name: Exeggcute
     src: http://i.imgur.com/iR6uH27.png
-    rarity: 5
+    rarity: 2
   - name: Exeggutor
     src: http://i.imgur.com/vdaiuyl.png
     rarity: 5
@@ -341,7 +341,7 @@ pokemon:
     rarity: 8
   - name: Tangela
     src: http://i.imgur.com/YifjSAL.png
-    rarity: 6
+    rarity: 5
   - name: Kangaskhan
     src: http://i.imgur.com/cXO0pEr.png
     rarity: 10
@@ -353,13 +353,13 @@ pokemon:
     rarity: 6
   - name: Goldeen
     src: http://i.imgur.com/WTsVZD0.png
-    rarity: 4
+    rarity: 3
   - name: Seaking
     src: http://i.imgur.com/QPXKxb6.png
     rarity: 4
   - name: Staryu
     src: http://i.imgur.com/pAMBC7h.png
-    rarity: 6
+    rarity: 5
   - name: Starmie
     src: http://i.imgur.com/IrE5Z0j.png
     rarity: 6
