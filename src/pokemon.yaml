@@ -188,7 +188,7 @@ pokemon:
     rarity: 4
   - name: Abra
     src: http://i.imgur.com/m6SEUIc.png
-    rarity: 6
+    rarity: 5
   - name: Kadabra
     src: http://i.imgur.com/MImxjGE.png
     rarity: 7
