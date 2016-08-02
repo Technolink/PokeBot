@@ -162,9 +162,9 @@ def save_and_filter_pokemon(pokemons):
 def post_to_slack(pokemons):
     slack = Slacker(CONFIG['slackToken'])
     for pokemon in pokemons:
-        message = 'You can find ' + pokemon.name + ' <https://pokevision.com/#/@' + str(pokemon.lat) + \
-            ',' + str(pokemon.long) + \
-            '|' + 'here' + \
+        message = 'You can find ' + pokemon.name + ' <http://maps.google.com/maps?q=' + str(pokemon.lat) + \
+            ',' + str(pokemon.long) + '&ll=' + str(pokemon.lat) + ',' + str(pokemon.long) + \
+            '&z=18|' + 'here' + \
             '> until ' + pokemon.datetime_hidden
         if (pokemon.rarity >= CONFIG['channel_rarity']):
             message = '<!channel> ' + message
