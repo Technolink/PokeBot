@@ -3,6 +3,7 @@ from pgoapi import PGoApi
 from pgoapi.utilities import f2i, h2f
 import yaml
 import os
+import time
 import re
 from datetime import datetime, timedelta
 import json
@@ -51,7 +52,7 @@ class Pokemon(object):
         self.lat = lat
         self.long = long
         self.time_till_hidden = time_till_hidden_ms/1000
-        self.datetime_hidden = (datetime.now() + timedelta(0, self.time_till_hidden)).strftime("%-I:%M:%S %p")
+        self.datetime_hidden = (datetime.now() + timedelta(0, self.time_till_hidden)).strftime("%I:%M:%S %p")
 
     def __lt__(self, other):
         return self.id < other.id
@@ -136,6 +137,7 @@ def find_pokemon(client, starting_lat, starting_long):
                         else:
                             seen.add(encounter_id)
                         pokemons.append(Pokemon.from_data(pokemon))
+        time.sleep(5)
     
     return pokemons
 
