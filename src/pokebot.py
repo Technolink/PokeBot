@@ -112,7 +112,6 @@ def generate_location_steps(starting_lat, startin_lng, step_size, step_limit):
 def find_pokemon(client, starting_lat, starting_long):
     step_size = 0.0015
     step_limit = 2
-    #coords = generate_spiral(lat, long, step_size, step_limit)
     coords = generate_location_steps(starting_lat, starting_long, step_size, step_limit)
     pokemons = []
     seen = set()
@@ -124,9 +123,8 @@ def find_pokemon(client, starting_lat, starting_long):
         
         cell_ids = get_cell_ids(lat, long)
         timestamps = [0,] * len(cell_ids)
-        client.get_map_objects(latitude=f2i(lat), longitude=f2i(long), since_timestamp_ms=timestamps, cell_id=cell_ids)
+        response = client.get_map_objects(latitude=f2i(lat), longitude=f2i(long), since_timestamp_ms=timestamps, cell_id=cell_ids)
         
-        response = client.call()
         if response['responses']['GET_MAP_OBJECTS']['status'] == 1:
             for map_cell in response['responses']['GET_MAP_OBJECTS']['map_cells']:
                 if 'wild_pokemons' in map_cell:
@@ -175,6 +173,11 @@ def post_to_slack(pokemons):
 
 if __name__ == '__main__':
     client = PGoApi()
+    encrypt_file = path+"/../encrypt.so"
+
+    client.activate_signature(encrypt_file)
+    client.set_position(CONFIG['lat'], CONFIG['long'], 0)
+
     logged_in = client.login(CONFIG['auth_service'], CONFIG['username'], CONFIG['password'])
     pokemons = []
     if logged_in:
