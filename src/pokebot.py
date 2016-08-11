@@ -5,6 +5,7 @@ import yaml
 import os
 import time
 import re
+import sys
 from datetime import datetime, timedelta
 import json
 import random
@@ -14,8 +15,9 @@ from google.protobuf.internal import encoder
 path = os.path.dirname(os.path.realpath(__file__))
 
 
-def load_config():
-    file = path+"/../config.json"
+def load_config(file=None):
+    if file is None:
+        file = path+"/../config.json"
     with open(file) as data:
         return json.load(data)
 
@@ -25,8 +27,7 @@ def load_pokemon():
     with open(file) as data:
         return yaml.load(data)
 
-
-CONFIG = load_config()
+CONFIG = {}
 POKEMON_DB = load_pokemon()
 POKEMON_NAME_TO_ID = {}
 
@@ -140,18 +141,21 @@ def find_pokemon(client, starting_lat, starting_long):
     return pokemons
 
     
-def save_and_filter_pokemon(pokemons):
-    file = path+"/../pokemon_db.json"
+def save_and_filter_pokemon(pokemons, db_path=None):
+    if db_path is None:
+        db_path = path+"/../pokemon_db.json"
+    print(db_path)
+
     existing = {}
-    if os.path.isfile(file):
-        with open(file) as data:
+    if os.path.isfile(db_path):
+        with open(db_path) as data:
             existing = json.load(data)
 
     filtered_pokemons = [pokemon for pokemon in pokemons if str(pokemon.encounter_id) not in existing]
     for pokemon in filtered_pokemons:
         existing[pokemon.encounter_id] = pokemon.to_dict()
     
-    with open(file, 'w') as data:
+    with open(db_path, 'w') as data:
         json.dump(existing, data)
     
     return filtered_pokemons
@@ -172,6 +176,15 @@ def post_to_slack(pokemons):
 
 
 if __name__ == '__main__':
+    config_path = None
+    if len(sys.argv) > 1:
+        config_path = sys.argv[1]
+    CONFIG = load_config(config_path)
+
+    db_path = None
+    if len(sys.argv) > 2:
+        db_path = sys.argv[2]
+
     client = PGoApi()
     encrypt_file = path+"/../encrypt.so"
 
@@ -185,6 +198,5 @@ if __name__ == '__main__':
         pokemons.sort()
         print(pokemons)
     
-    post_to_slack(save_and_filter_pokemon(pokemons))
-    
-    
+    post_to_slack(save_and_filter_pokemon(pokemons, db_path))
+
