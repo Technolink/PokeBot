@@ -62,13 +62,13 @@ pokemon:
     rarity: 1
   - name: Spearow
     src: http://i.imgur.com/TeuYzrs.png
-    rarity: 3
+    rarity: 2
   - name: Fearow
     src: http://i.imgur.com/LObFh67.png
     rarity: 3
   - name: Ekans
     src: http://i.imgur.com/r87rWZ6.png
-    rarity: 4
+    rarity: 2
   - name: Arbok
     src: http://i.imgur.com/sbshBkp.png
     rarity: 4
@@ -326,7 +326,7 @@ pokemon:
     rarity: 7
   - name: Koffing
     src: http://i.imgur.com/27Oq8tF.png
-    rarity: 6
+    rarity: 3
   - name: Weezing
     src: http://i.imgur.com/AM4T75L.png
     rarity: 6
@@ -347,7 +347,7 @@ pokemon:
     rarity: 10
   - name: Horsea
     src: http://i.imgur.com/KPORG91.png
-    rarity: 6
+    rarity: 5
   - name: Seadra
     src: http://i.imgur.com/uMbL1Sd.png
     rarity: 6
