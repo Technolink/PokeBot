@@ -1,4 +1,5 @@
-config.json
+config*.json
+pokemon_db*.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

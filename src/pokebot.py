@@ -144,7 +144,6 @@ def find_pokemon(client, starting_lat, starting_long):
 def save_and_filter_pokemon(pokemons, db_path=None):
     if db_path is None:
         db_path = path+"/../pokemon_db.json"
-    print(db_path)
 
     existing = {}
     if os.path.isfile(db_path):
