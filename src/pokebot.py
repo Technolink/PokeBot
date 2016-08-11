@@ -7,6 +7,8 @@ import time
 import re
 import sys
 from datetime import datetime, timedelta
+from tzlocal import get_localzone
+from pytz import timezone
 import json
 import random
 from s2sphere import Cell, CellId, LatLng
@@ -53,7 +55,10 @@ class Pokemon(object):
         self.lat = lat
         self.long = long
         self.time_till_hidden = time_till_hidden_ms/1000
-        self.datetime_hidden = (datetime.now() + timedelta(0, self.time_till_hidden)).strftime("%I:%M:%S %p")
+        datetime_hidden = (datetime.now() + timedelta(0, self.time_till_hidden))
+        datetime_hidden = get_localzone().localize(datetime_hidden).astimezone(timezone(CONFIG['timezone']))
+        
+        self.datetime_hidden = datetime_hidden.strftime("%I:%M:%S %p")
 
     def __lt__(self, other):
         return self.id < other.id
@@ -180,10 +185,6 @@ if __name__ == '__main__':
         config_path = sys.argv[1]
     CONFIG = load_config(config_path)
 
-    db_path = None
-    if len(sys.argv) > 2:
-        db_path = sys.argv[2]
-
     client = PGoApi()
     encrypt_file = path+"/../encrypt.so"
 
@@ -197,5 +198,5 @@ if __name__ == '__main__':
         pokemons.sort()
         print(pokemons)
     
-    post_to_slack(save_and_filter_pokemon(pokemons, db_path))
+    post_to_slack(save_and_filter_pokemon(pokemons, CONFIG['db_path']))
 
