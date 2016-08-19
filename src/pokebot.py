@@ -176,6 +176,8 @@ def post_to_slack(pokemons):
             message = '<!channel> ' + message
         elif (pokemon.rarity >= CONFIG['here_rarity']):
             message = '<!here> ' + message
+        elif (pokemon.raritiy == 0):
+            return # Do not post for really common pokemon
         slack.chat.post_message(CONFIG['slackChannel'], message, username=pokemon.name, icon_emoji=":pokemon-{}:".format(pokemon.name))
 
 

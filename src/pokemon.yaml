@@ -29,7 +29,7 @@ pokemon:
     rarity: 10
   - name: Caterpie
     src: http://i.imgur.com/vB8l2jS.png
-    rarity: 1
+    rarity: 0
   - name: Metapod
     src: http://i.imgur.com/FMa6yXY.png
     rarity: 1
@@ -38,7 +38,7 @@ pokemon:
     rarity: 3
   - name: Weedle
     src: http://i.imgur.com/t3J27X2.png
-    rarity: 1
+    rarity: 0
   - name: Kakuna
     src: http://i.imgur.com/2OxfMtn.png
     rarity: 1
@@ -47,7 +47,7 @@ pokemon:
     rarity: 3
   - name: Pidgey
     src: http://i.imgur.com/4VTVTkk.png
-    rarity: 1
+    rarity: 0
   - name: Pidgeotto
     src: http://i.imgur.com/DpzZ91Q.png
     rarity: 1
@@ -56,13 +56,13 @@ pokemon:
     rarity: 3
   - name: Rattata
     src: http://i.imgur.com/bTejs34.png
-    rarity: 1
+    rarity: 0
   - name: Raticate
     src: http://i.imgur.com/UeL4Aag.png
     rarity: 1
   - name: Spearow
     src: http://i.imgur.com/TeuYzrs.png
-    rarity: 2
+    rarity: 1
   - name: Fearow
     src: http://i.imgur.com/LObFh67.png
     rarity: 3
@@ -122,13 +122,13 @@ pokemon:
     rarity: 5
   - name: Zubat
     src: http://i.imgur.com/w8oCg2P.png
-    rarity: 2
+    rarity: 0
   - name: Golbat
     src: http://i.imgur.com/muZnJwl.png
     rarity: 2
   - name: Oddish
     src: http://i.imgur.com/ng75ubV.png
-    rarity: 2
+    rarity: 0
   - name: Gloom
     src: http://i.imgur.com/Krw7NhL.png
     rarity: 2
@@ -137,7 +137,7 @@ pokemon:
     rarity: 3
   - name: Paras
     src: http://i.imgur.com/JWYUQ2D.png
-    rarity: 2
+    rarity: 0
   - name: Parasect
     src: http://i.imgur.com/TTm83oB.png
     rarity: 3
@@ -206,7 +206,7 @@ pokemon:
     rarity: 7
   - name: Bellsprout
     src: http://i.imgur.com/z9GIhur.png
-    rarity: 2
+    rarity: 0
   - name: Weepinbell
     src: http://i.imgur.com/YV6kNAz.png
     rarity: 3
@@ -251,7 +251,7 @@ pokemon:
     rarity: 5
   - name: Doduo
     src: http://i.imgur.com/kah8lVf.png
-    rarity: 2
+    rarity: 0
   - name: Dodrio
     src: http://i.imgur.com/pplDPof.png
     rarity: 3
@@ -305,7 +305,7 @@ pokemon:
     rarity: 7
   - name: Exeggcute
     src: http://i.imgur.com/iR6uH27.png
-    rarity: 2
+    rarity: 0
   - name: Exeggutor
     src: http://i.imgur.com/vdaiuyl.png
     rarity: 5
@@ -380,7 +380,7 @@ pokemon:
     rarity: 6
   - name: Pinsir
     src: http://i.imgur.com/Df1mbmR.png
-    rarity: 7
+    rarity: 5
   - name: Tauros
     src: http://i.imgur.com/3W1Cjba.png
     rarity: 7
@@ -398,7 +398,7 @@ pokemon:
     rarity: 10
   - name: Eevee
     src: http://i.imgur.com/ci7ZrUx.png
-    rarity: 2
+    rarity: 0
   - name: Vaporeon
     src: http://i.imgur.com/9PFAu2e.png
     rarity: 4
