@@ -143,7 +143,7 @@ pokemon:
     rarity: 3
   - name: Venonat
     src: http://i.imgur.com/rK55R0R.png
-    rarity: 2
+    rarity: 0
   - name: Venomoth
     src: http://i.imgur.com/cr7Hrtz.png
     rarity: 3
