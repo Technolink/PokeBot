@@ -79,7 +79,8 @@ class Pokemon(object):
             'long': self.long,
             'name': self.name,
             'encounter_id': self.encounter_id,
-            'time_till_hidden': self.time_till_hidden
+            'time_till_hidden': self.time_till_hidden,
+            'timestamp': datetime.utcnow().isoformat()
         }
 
     
@@ -177,7 +178,8 @@ def post_to_slack(pokemons):
         elif (pokemon.rarity >= CONFIG['here_rarity']):
             message = '<!here> ' + message
         elif (pokemon.rarity == 0):
-            return # Do not post for really common pokemon
+            print('Not posting {} because its rarity was 0'.format(pokemon.name))
+            continue # Do not post for really common pokemon
         slack.chat.post_message(CONFIG['slackChannel'], message, username=pokemon.name, icon_emoji=":pokemon-{}:".format(pokemon.name))
 
 
